@@ -1,0 +1,29 @@
+{
+  "name": "cf-deploy",
+  "version": "0.0.0",
+  "description": "Cloud Foundry Deploy commands",
+  "main": "index.js",
+  "dependencies": {
+    "cf-nodejs-client": "^0.8.1",
+    "cli-spinner": "^0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Snugug/cf-deploy.git"
+  },
+  "keywords": [
+    "cf",
+    "cloudfoundry",
+    "deploy"
+  ],
+  "author": "Sam Richard <sam@snug.ug>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Snugug/cf-deploy/issues"
+  },
+  "homepage": "https://github.com/Snugug/cf-deploy#readme"
+}
