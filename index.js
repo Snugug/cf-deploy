@@ -27,10 +27,8 @@ module.exports = function (options) {
       return apps.getApps(auth.token_type, auth.access_token).then(function (result) {
         var guid;
 
-
-        // ha--node-starter
         result.resources.forEach(function (item) {
-          if (item.entity.name === config.name) {
+	  if (item.entity.name === config.app) {
             guid = item.metadata.guid;
           }
         });
