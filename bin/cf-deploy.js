@@ -2,6 +2,7 @@
 'use strict';
 
 var program = require('commander'),
+    path = require('path'),
     meta = require('../package.json'),
     cfd = require('../index');
 
