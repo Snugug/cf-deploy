@@ -18,10 +18,10 @@ program
   .option('-e, --endpoint <endpoint>', 'API Endpoint to use')
   .option('-u, --username <username>', 'username')
   .option('-p, --password <password>', 'password')
-  .option('-n, --app <app>', 'name of application')
+  .option('-a, --app <app>', 'name of application')
   .option('-s, --space <space>', 'space to deploy to')
   .option('-o, --org <org>', 'organization to deploy to')
-  .option('-h, --host <host>', 'custom host to use')
+  .option('-t, --host <host>', 'custom host to use')
 
 program.on('--help', function(){
   console.log('  Deploy Methods:');
@@ -41,6 +41,18 @@ else if (options.method !== 'blue-green' && options.method !== 'branch') {
   console.error('Only `blue-green` and `branch` deploys are supported');
   process.exit(1);
 }
+
+
+try {
+  if (program.config) {
+    options = require(path.join(process.cwd(), program.config));
+  }
+}
+catch (e) {
+  console.error('Config file path must be relative to the directory `cf-deploy` is run from and must be a JSON file');
+  process.exit(1);
+}
+
 
 program.options.forEach(function (option) {
   var name = option.long.substr(2);
