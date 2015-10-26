@@ -8,11 +8,12 @@
   },
   "dependencies": {
     "bluebird": "^2.10.2",
-    "cf-nodejs-client": "^0.8.1",
+    "cf-nodejs-client": "^0.9.x",
     "cli-spinner": "^0.2.1",
     "commander": "^2.9.0",
     "deepmerge": "^0.2.10",
-    "js-yaml": "^3.4.3"
+    "js-yaml": "^3.4.3",
+    "lodash-node": "^3.10.1"
   },
   "devDependencies": {},
   "scripts": {

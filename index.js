@@ -1,30 +1,25 @@
 'use strict';
 
-var CloudFoundry = require('cf-nodejs-client'),
-    Promise = require('bluebird'),
+var Promise = require('bluebird'),
     util = require('util'),
     Spinner = require('cli-spinner').Spinner,
     spinner = new Spinner('%s'),
-    cf = new CloudFoundry.CloudFoundry(),
-    routes = new CloudFoundry.Routes(),
     manifest = require('./lib/manifest'),
     config = require('./lib/config'),
-    apps = new CloudFoundry.Apps();
+    cf = require('./lib/cf');
 
 module.exports = function (options) {
   spinner.start();
 
   config(options).then(function (config) {
-    cf.setEndPoint(config.endpoint);
-    routes.setEndPoint(config.endpoint);
-    apps.setEndPoint(config.endpoint);
+    cf = cf(config);
 
-    return cf.getInfo().then(function (result) {
-      return cf.login(result.authorization_endpoint,
+    return cf.cloudFoundry.getInfo().then(function (result) {
+      return cf.cloudFoundry.login(result.authorization_endpoint,
         config.username,
         config.password);
     }).then(function (auth) {
-      return apps.getApps(auth.token_type, auth.access_token).then(function (result) {
+      return cf.apps.getApps(auth.token_type, auth.access_token).then(function (result) {
         var guid;
 
         result.resources.forEach(function (item) {
@@ -33,7 +28,7 @@ module.exports = function (options) {
           }
         });
 
-        return manifest(auth, guid).then(function (settings) {
+        return manifest(auth, guid, cf).then(function (settings) {
           spinner.stop();
           console.log(settings);
           return settings;
