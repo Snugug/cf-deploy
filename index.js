@@ -28,16 +28,16 @@ module.exports = function (options) {
         var guid;
 
         result.resources.forEach(function (item) {
-	  if (item.entity.name === config.app) {
+          if (item.entity.name === config.app) {
             guid = item.metadata.guid;
           }
         });
 
-	return manifest(auth, guid).then(function (settings) {
-	  spinner.stop();
-	  console.log(settings);
-	  return settings;
-	});
+        return manifest(auth, guid).then(function (settings) {
+          spinner.stop();
+          console.log(settings);
+          return settings;
+        });
       });
     })
   }).catch(function (error) {
