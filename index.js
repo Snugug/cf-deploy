@@ -33,12 +33,11 @@ module.exports = function (options) {
           }
         });
 
-        if (guid) {
-          return manifest(auth, guid).then(function (settings) {
-            spinner.stop();
-            return settings;
-          });
-        }
+	return manifest(auth, guid).then(function (settings) {
+	  spinner.stop();
+	  console.log(settings);
+	  return settings;
+	});
       });
     })
   }).catch(function (error) {
